@@ -29,8 +29,10 @@ def positions(lst: List[int | float] = [-5, 9, 0, 3, -1, -2, 1, 4, -2,
                                         -5, 7],
               min_: int | float = 5,
               max_: int | float = 15) -> List[int]:
-    out = [ind for ind,val in enumerate( lst) if min_ < val < max_]
-    sorted( out)
+    # out = [ind for ind,val in enumerate( lst) if min_ < val < max_]
+    out = list(filter(lambda indval: min_ < indval[1] < max_, [[ind,val] for ind,val in enumerate( lst)]))
+    sorted( out,key=lambda x: x[1])
+    out = list(map(lambda x: x[0], out))
     return out
 
 
